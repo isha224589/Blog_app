@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %} 
+  About Us 
+{% endblock %} 
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center my-4">About Us</h1>
+    <p class="text-center">Welcome to our blog! We are passionate about sharing our thoughts and experiences with the world. Our team is dedicated to providing you with engaging content that inspires, informs, and entertains.</p>
+    <p class="text-center">Whether you're here for the latest trends, insightful articles,
+    or just a good read, we hope you find something that resonates with you. Thank you for visiting our blog, and we look forward to connecting with you through our posts!</p>
+
+    <div class="text-center">
+        <a href="{% url 'tweet_list' %}" class="btn btn-primary">Back to Home</a>
+    </div>
+</div>
+{% endblock %}
+

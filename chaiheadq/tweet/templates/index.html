@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Bloggzone - Home
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="bg-dark text-white py-5 mb-4 rounded shadow">
+  <div class="container text-center">
+    <h1 class="display-4 fw-bold">Welcome to Bloggzone</h1>
+    <p class="lead">Share your stories, ideas, and inspiration with the world.</p>
+    <a href="{% url 'tweet_create' %}" class="btn btn-primary btn-lg mt-3">Create a Blog Post</a>
+  </div>
+</div>
+
+<!-- Blog Cards Grid -->
+<div class="container">
+  <div class="row g-4">
+    {% for tweet in tweets %}
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        {% if tweet.photo %}
+        <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Blog image">
+        {% endif %}
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ tweet.user.username }}</h5>
+          <p class="card-text">{{ tweet.text|truncatewords:20 }}</p>
+          <div class="mt-auto">
+            <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-outline-primary btn-sm">Edit</a>
+            <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+      <div class="alert alert-info text-center">No blog posts yet. Be the first to create one!</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
